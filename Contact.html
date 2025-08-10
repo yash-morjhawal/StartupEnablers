@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Startup Enablers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header onclick="secretClick()">
+    <h1>Startup Enablers</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="grants.html">Grants</a>
+        <a href="angels.html">Angel Investors</a>
+        <a href="vcs.html">VC Firms</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html" class="active">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <h2>Contact Us</h2>
+    <form name="contactForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message"></textarea>
+
+        <button type="submit">Send</button>
+    </form>
+
+    <h3>Our Location</h3>
+    <iframe src="https://maps.google.com/maps?q=New%20Delhi&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" aria-label="Map to our office"></iframe>
+    <address>
+        Startup Enablers, Connaught Place, New Delhi, India
+    </address>
+</main>
+
+<footer>
+    <p>&copy; 2025 Startup Enablers</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
