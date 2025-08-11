@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Startup Enablers</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Additional clean layout styles */
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .about-section img {
+            max-width: 500px;
+            width: 100%;
+            border-radius: 8px;
+        }
+        .about-section.reverse {
+            flex-direction: row-reverse;
+        }
+        .highlight-box {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background: #fff3e6;
+            padding: 20px;
+            border-left: 6px solid orange;
+            border-radius: 8px;
+        }
+        .highlight-box-alt {
+            background: #f0f7ff;
+            border-left: 6px solid #007BFF;
+        }
+        .highlight-box-green {
+            background: #eaffea;
+            border-left: 6px solid #28a745;
+        }
+        /* Centered lists with same highlight background */
+        .values-list, .choose-list {
+            list-style: none;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 800px;
+            text-align: center;
+            background: #fff3e6;
+            border-left: 6px solid orange;
+            border-radius: 8px;
+        }
+        .values-list li, .choose-list li {
+            margin: 12px 0;
+            font-size: 1.05rem;
+        }
+        .values-list li i, .choose-list li i {
+            color: orange;
+            margin-right: 8px;
+        }
+        /* Center all section headers */
+        h2 {
+            text-align: center;
+        }
+        /* Responsive stacking */
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-section.reverse {
+                flex-direction: column;
+            }
+            .about-section img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Startup Enablers Logo" class="logo">
+    <h1>Startup Enablers</h1>
+    <p id="greeting">About Us</p>
+    <div class="auth-buttons">
+        <button id="loginBtn">Login</button>
+        <button id="logoutBtn">Logout</button>
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="grants.html">Grants</a></li>
+        <li><a href="angels.html">Angel Investors</a></li>
+        <li><a href="vcs.html">VC Firms</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <main>
+
+        <!-- About Company -->
+        <div class="about-section reverse">
+            <div class="highlight-box">
+                <h2>About the Company</h2>
+                <p>Startup Enablers is a dedicated platform that empowers early-stage founders to secure the right funding and resources to grow their ventures. We bridge the gap between entrepreneurs and capital providers by connecting startups with <strong>government grants, angel investors, and venture capital firms</strong> that align with their goals.</p>
+                <p>We offer curated, up-to-date information on funding opportunities, past investment trends, and ticket sizes, ensuring founders have the insights they need to make informed decisions. Additionally, our free resources — from pitch deck templates to investor email samples — help entrepreneurs approach funding conversations with confidence.</p>
+            </div>
+            <img src="https://i.postimg.cc/tZpbhm4v/image.png" alt="Bridge connecting startups to funding">
+        </div>
+
+        <!-- Our Mission -->
+        <div class="about-section">
+            <div class="highlight-box-alt">
+                <h2>Our Mission</h2>
+                <p>To make startup funding <strong>accessible, transparent, and inclusive</strong> by equipping founders with the right tools, connections, and knowledge to succeed. We aim to level the playing field so every great idea gets a fair chance at success.</p>
+            </div>
+        </div>
+
+        <!-- Our Vision -->
+        <div class="about-section reverse">
+            <div class="highlight-box">
+                <h2>Our Vision</h2>
+                <p>To become the <strong>most trusted partner for founders worldwide</strong>, enabling the next generation of innovators to transform their ideas into sustainable, impactful businesses.</p>
+            </div>
+            <img src="https://i.postimg.cc/XB5RZTRz/image.png" alt="Globe surrounded by startup icons">
+        </div>
+
+        <!-- Our Purpose -->
+        <div class="about-section">
+            <div class="highlight-box-green">
+                <h2>Our Purpose</h2>
+                <p>We believe that <strong>great ideas shouldn’t fail due to lack of access to capital</strong>. Our purpose is to remove the barriers that stand between promising startups and the funding they need — fostering a thriving entrepreneurial ecosystem where innovation can flourish.</p>
+            </div>
+            <img src="https://i.postimg.cc/QVt71jn7/image.png" alt="Hands holding a small plant representing growth and support">
+        </div>
+
+        <!-- Our Values -->
+        <h2>Our Values</h2>
+        <ul class="values-list">
+            <li><i class="fas fa-shield-alt"></i><strong>Integrity:</strong> Building trust through transparency and ethical practices.</li>
+            <li><i class="fas fa-handshake"></i><strong>Collaboration:</strong> Working hand-in-hand with founders, investors, and partners.</li>
+            <li><i class="fas fa-lightbulb"></i><strong>Innovation:</strong> Continuously evolving our platform to meet the dynamic needs of the startup world.</li>
+            <li><i class="fas fa-users"></i><strong>Inclusivity:</strong> Ensuring equal access to opportunities for all founders.</li>
+        </ul>
+
+        <!-- Why Choose Us -->
+        <h2>Why Choose Us</h2>
+        <ul class="choose-list">
+            <li><i class="fas fa-network-wired"></i>Curated Network of reliable investors and grant providers.</li>
+            <li><i class="fas fa-chart-line"></i>Actionable Insights on ticket sizes, investment focus, and timelines.</li>
+            <li><i class="fas fa-gift"></i>Free Resources to give startups a head start.</li>
+            <li><i class="fas fa-universal-access"></i>Accessibility Commitment – optimized for visually challenged users.</li>
+        </ul>
+
+        <p style="text-align:center;"><a href="index.html">⬅ Back to Home</a></p>
+    </main>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="contact.html">Contact Us</a> |
+        <a href="accessibility.html">Accessibility</a>
+    </div>
+    <p>&copy; 2025 Startup Enablers</p>
+</footer>
+
+</body>
+</html>
