@@ -4,113 +4,79 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Startup Enablers - Home</title>
+<style>
+:root{
+    --green-dark: #1b5e20;
+    --green-light: #e8f5e9;
+    --green-accent: #388e3c;
+}
 
-  <style>
-    :root{
-      --green-dark: #1b5e20;    /* primary dark green (header + cards) */
-      --green-darker: #14532d;  /* for accents & borders */
-      --green-light: #e8f5e9;   /* notifications background */
-      --accent: #388e3c;        /* button accent */
-      --muted-white: #e8fef3;
-      --card-shadow: rgba(3, 52, 23, 0.12);
-    }
+/* Notifications Pane */
+.side-column {
+    background-color: var(--green-light);
+    border: 2px solid var(--green-dark);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.side-column h2 {
+    color: var(--green-dark);
+}
+.notification-box ul {
+    list-style: none;
+    padding: 0;
+}
+.notification-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--green-dark);
+    font-weight: bold;
+    color: var(--green-dark);
+}
 
-    /* Reset & base */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html,body { height: 100%; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #103217; background: #fff; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    /* Top green slim bar */
-    .top-bar { background: linear-gradient(90deg, var(--green-darker), var(--green-dark)); color: #fff; padding: 6px 0; }
-    .top-bar-content { max-width: 1100px; margin: 0 auto; padding: 4px 18px; font-size: 14px; display:flex; justify-content:flex-end; align-items:center; gap:10px; }
-    .contact-email { opacity: .95; }
-
-    /* Header */
-    .header-outer { background: var(--green-dark); color: #fff; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
-    .responsive-wrapper { max-width: 1100px; margin: 0 auto; padding: 18px; display:flex; align-items:center; gap: 18px; flex-wrap:wrap; }
-    .header-logo img.site-logo { height: 48px; width: auto; display:block; }
-
-    .header-navigation { display:flex; gap: 16px; margin-left: 12px; align-items:center; flex:1; flex-wrap:wrap; }
-    .header-navigation a { color: #dff3e6; padding: 8px 12px; border-radius:6px; font-weight:600; }
-    .header-navigation a.active, .header-navigation a:hover { background: rgba(255,255,255,0.06); color: #fff; }
-
-    .auth-buttons { display:flex; gap:10px; }
-    .auth-buttons button { background: transparent; border: 2px solid rgba(255,255,255,0.12); color: #fff; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700; }
-    .auth-buttons button#logoutBtn { background: rgba(255,255,255,0.08); }
-
-    /* Layout container */
-    .container { max-width:1100px; margin: 28px auto; padding: 0 18px; display:grid; grid-template-columns: 300px 1fr; gap: 28px; align-items:start; }
-
-    /* Side column (notifications) */
-    .side-column { background: linear-gradient(180deg, var(--green-light), #f3fbf6); border: 2px solid var(--green-darker); border-radius: 12px; padding: 16px; box-shadow: 0 10px 25px rgba(11,55,25,0.06); }
-    .side-column h2 { color: var(--green-darker); margin-bottom:12px; font-size:18px; }
-    .notification-box { background: #fff; border-radius:10px; padding:10px; border:1px solid rgba(27,94,32,0.06); overflow:hidden; }
-    /* styled marquee-style list */
-    .notification-box marquee { display:block; height:220px; }
-    .notification-list { list-style:none; padding-left:10px; margin:0; font-weight:700; color: var(--green-darker); }
-    .notification-list li { padding:10px 6px; border-bottom: 1px dashed rgba(27,94,32,0.12); display:flex; gap:8px; align-items:center; }
-    .notification-list li:last-child { border-bottom:none; }
-    .notification-icon { background: var(--accent); color:white; width:28px; height:28px; display:inline-flex; justify-content:center; align-items:center; border-radius:6px; font-size:14px; }
-
-    /* Main content */
-    main h2 { font-size:26px; color:var(--green-darker); margin-bottom:8px; }
-    main p { margin-bottom:12px; line-height:1.6; color:#234b34; }
-
-    /* Explore Opportunities cards */
-    .card-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:18px; margin-top:16px; }
-    .card {
-      background: var(--green-dark);
-      color: #fff;
-      padding:18px;
-      border-radius:12px;
-      box-shadow: 0 8px 18px var(--card-shadow);
-      transition: transform .18s ease, box-shadow .18s ease;
-      min-height:140px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-    .card h4 { font-size:18px; margin-bottom:8px; font-weight:800; color:#fff; }
-    .card p { margin:0; font-weight:800; color:#fff; opacity:0.95; }
-    .card a { margin-top:12px; align-self:flex-start; background: transparent; border: 2px solid rgba(255,255,255,0.18); padding:8px 12px; border-radius:8px; color:#fff; font-weight:800; text-decoration:none; transition: background .12s ease, transform .12s ease; }
-    .card a:hover { background: rgba(255,255,255,0.06); transform: translateY(-3px); }
-
-    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(8,56,19,0.14); }
-
-    /* About section */
-    .about-section { display:flex; gap:16px; align-items:center; margin-top:12px; }
-    .about-section img { width:88px; height:auto; border-radius:8px; }
-    .highlight-box { background: linear-gradient(90deg, rgba(27,94,32,0.06), rgba(27,94,32,0.02)); padding:12px; border-radius:8px; color:#123b27; font-weight:600; }
-
-    /* Why choose us & values lists */
-    .choose-list, .values-list { margin-top:10px; list-style: none; padding-left: 0; display:grid; gap:8px; }
-    .choose-list li::before, .values-list li::before { content: "•"; color: var(--green-dark); display:inline-block; width:16px; font-weight:800; margin-right:6px; }
-    .choose-list li, .values-list li { padding-left:6px; color:#234b34; font-weight:700; }
-
-    /* Newsletter forms */
-    form { display:flex; gap:10px; align-items:center; margin-top:10px; }
-    input[type="email"] { padding:10px 12px; border:1px solid rgba(27,94,32,0.12); border-radius:8px; flex:1; outline:none; }
-    button[type="submit"], #subscribeBtn { background: var(--accent); color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:800; }
-
-    /* Footer */
-    .site-footer { margin-top:36px; background:#f7faf7; border-top:1px solid rgba(27,94,32,0.04); padding:24px 0; }
-    .footer-container { max-width:1100px; margin:0 auto; padding: 0 18px; display:grid; grid-template-columns: 1fr 280px; gap:20px; align-items:start; }
-    .newsletter-title { font-weight:800; color:var(--green-darker); margin-bottom:8px; }
-    .newsletter-form { display:flex; gap:8px; align-items:center; }
-    .social-icons { display:flex; gap:10px; margin-top:8px; }
-    .locations-list { display:grid; gap:10px; margin-top:8px; }
-
-    .footer-copy { max-width:1100px; margin:14px auto 0; padding:8px 18px; color:#4b6b57; font-weight:600; font-size:14px; }
-
-    /* Responsive */
-    @media (max-width: 880px){
-      .container { grid-template-columns: 1fr; padding-bottom: 20px; }
-      .footer-container { grid-template-columns: 1fr; }
-      .header-navigation { order: 3; width:100%; }
-      .auth-buttons { order: 2; margin-left:auto; }
-    }
-  </style>
+/* Explore Opportunities Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.card {
+    background-color: var(--green-dark);
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card h4 {
+    margin-bottom: 10px;
+}
+.card p {
+    font-weight: normal;
+    color: #e0f2f1;
+}
+.card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background-color: var(--green-accent);
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+.card a:hover {
+    background-color: #66bb6a;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+</style>
+ 
 </head>
 <body>
 
