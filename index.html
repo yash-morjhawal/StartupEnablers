@@ -5,35 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Startup Enablers - Home</title>
 <style>
-:root{
-    --green-dark: #1b5e20;
-    --green-light: #e8f5e9;
-    --green-accent: #388e3c;
-}
-
-/* Notifications Pane */
+/* Notifications pane */
 .side-column {
-    background-color: var(--green-light);
-    border: 2px solid var(--green-dark);
-    border-radius: 10px;
+    background-color: #e8f5e9; /* light green */
+    border: 2px solid #2e7d32; /* dark green border */
+    border-radius: 8px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-.side-column h2 {
-    color: var(--green-dark);
-}
 .notification-box ul {
     list-style: none;
-    padding: 0;
+    padding-left: 0;
 }
 .notification-box li {
     padding: 8px 0;
-    border-bottom: 1px dashed var(--green-dark);
+    border-bottom: 1px dashed #2e7d32;
     font-weight: bold;
-    color: var(--green-dark);
+    color: #1b5e20;
 }
 
-/* Explore Opportunities Cards */
+/* Explore Opportunities cards */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -41,8 +32,8 @@
     margin-top: 20px;
 }
 .card {
-    background-color: var(--green-dark);
-    color: white;
+    background-color: #1b5e20; /* dark green */
+    color: white; /* white text */
     font-weight: bold;
     padding: 20px;
     border-radius: 10px;
@@ -50,18 +41,15 @@
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.card h4 {
-    margin-bottom: 10px;
-}
 .card p {
     font-weight: normal;
-    color: #e0f2f1;
+    color: #e0f2f1; /* softer white-green */
 }
 .card a {
     display: inline-block;
     margin-top: 10px;
     padding: 8px 14px;
-    background-color: var(--green-accent);
+    background-color: #388e3c;
     color: white;
     font-weight: bold;
     border-radius: 6px;
