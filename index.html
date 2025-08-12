@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="https://i.postimg.cc/CRKXmxQm/favicon.png" type="image/png" sizes="32x32" /
+    <link rel="icon" href="https://i.postimg.cc/CRKXmxQm/favicon.png" type="image/png" sizes="32x32" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Startup Enablers - Home</title>
     <link rel="stylesheet" href="style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="script.js"></script>
+    <style>
+        /* New assessment button style */
+        .assessment-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: #1b5c55; /* Theme green */
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .assessment-btn:hover {
+            background-color: #fdd835; /* Yellow hover */
+            color: black;
+            transform: scale(1.05);
+        }
+        /* Mobile-friendly full width button */
+        @media screen and (max-width: 768px) {
+            .assessment-btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -65,6 +92,11 @@
                     <li> Tips for writing a winning pitch deck</li>
                 </ul>
             </marquee>
+        </div>
+
+        <!-- New Assessment Button -->
+        <div style="text-align:center; margin-top: 1.5rem;">
+            <a href="founder_assessment.html" class="assessment-btn">🚀 Assess Your Startup</a>
         </div>
     </aside>
 
@@ -124,8 +156,6 @@
         <li> Insights & market intelligence reports</li>
     </ul>
 </section>
-
-
 
 <!-- Our Values -->
 <section>
@@ -213,11 +243,8 @@
 
 </footer>
 
-
 <!-- Hidden link for philosophy page -->
 <a id="secretLink" href="philosophy.html" style="display:none;">Philosophy Page</a>
 
 </body>
 </html>
-
-
