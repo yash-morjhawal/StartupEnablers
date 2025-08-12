@@ -1,220 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Startup Enablers - Home</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Startup Enablers - Home</title>
+
+  <style>
+    :root{
+      --green-dark: #1b5e20;    /* primary dark green (header + cards) */
+      --green-darker: #14532d;  /* for accents & borders */
+      --green-light: #e8f5e9;   /* notifications background */
+      --accent: #388e3c;        /* button accent */
+      --muted-white: #e8fef3;
+      --card-shadow: rgba(3, 52, 23, 0.12);
+    }
+
+    /* Reset & base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html,body { height: 100%; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #103217; background: #fff; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Top green slim bar */
+    .top-bar { background: linear-gradient(90deg, var(--green-darker), var(--green-dark)); color: #fff; padding: 6px 0; }
+    .top-bar-content { max-width: 1100px; margin: 0 auto; padding: 4px 18px; font-size: 14px; display:flex; justify-content:flex-end; align-items:center; gap:10px; }
+    .contact-email { opacity: .95; }
+
+    /* Header */
+    .header-outer { background: var(--green-dark); color: #fff; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+    .responsive-wrapper { max-width: 1100px; margin: 0 auto; padding: 18px; display:flex; align-items:center; gap: 18px; flex-wrap:wrap; }
+    .header-logo img.site-logo { height: 48px; width: auto; display:block; }
+
+    .header-navigation { display:flex; gap: 16px; margin-left: 12px; align-items:center; flex:1; flex-wrap:wrap; }
+    .header-navigation a { color: #dff3e6; padding: 8px 12px; border-radius:6px; font-weight:600; }
+    .header-navigation a.active, .header-navigation a:hover { background: rgba(255,255,255,0.06); color: #fff; }
+
+    .auth-buttons { display:flex; gap:10px; }
+    .auth-buttons button { background: transparent; border: 2px solid rgba(255,255,255,0.12); color: #fff; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700; }
+    .auth-buttons button#logoutBtn { background: rgba(255,255,255,0.08); }
+
+    /* Layout container */
+    .container { max-width:1100px; margin: 28px auto; padding: 0 18px; display:grid; grid-template-columns: 300px 1fr; gap: 28px; align-items:start; }
+
+    /* Side column (notifications) */
+    .side-column { background: linear-gradient(180deg, var(--green-light), #f3fbf6); border: 2px solid var(--green-darker); border-radius: 12px; padding: 16px; box-shadow: 0 10px 25px rgba(11,55,25,0.06); }
+    .side-column h2 { color: var(--green-darker); margin-bottom:12px; font-size:18px; }
+    .notification-box { background: #fff; border-radius:10px; padding:10px; border:1px solid rgba(27,94,32,0.06); overflow:hidden; }
+    /* styled marquee-style list */
+    .notification-box marquee { display:block; height:220px; }
+    .notification-list { list-style:none; padding-left:10px; margin:0; font-weight:700; color: var(--green-darker); }
+    .notification-list li { padding:10px 6px; border-bottom: 1px dashed rgba(27,94,32,0.12); display:flex; gap:8px; align-items:center; }
+    .notification-list li:last-child { border-bottom:none; }
+    .notification-icon { background: var(--accent); color:white; width:28px; height:28px; display:inline-flex; justify-content:center; align-items:center; border-radius:6px; font-size:14px; }
+
+    /* Main content */
+    main h2 { font-size:26px; color:var(--green-darker); margin-bottom:8px; }
+    main p { margin-bottom:12px; line-height:1.6; color:#234b34; }
+
+    /* Explore Opportunities cards */
+    .card-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:18px; margin-top:16px; }
+    .card {
+      background: var(--green-dark);
+      color: #fff;
+      padding:18px;
+      border-radius:12px;
+      box-shadow: 0 8px 18px var(--card-shadow);
+      transition: transform .18s ease, box-shadow .18s ease;
+      min-height:140px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .card h4 { font-size:18px; margin-bottom:8px; font-weight:800; color:#fff; }
+    .card p { margin:0; font-weight:800; color:#fff; opacity:0.95; }
+    .card a { margin-top:12px; align-self:flex-start; background: transparent; border: 2px solid rgba(255,255,255,0.18); padding:8px 12px; border-radius:8px; color:#fff; font-weight:800; text-decoration:none; transition: background .12s ease, transform .12s ease; }
+    .card a:hover { background: rgba(255,255,255,0.06); transform: translateY(-3px); }
+
+    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(8,56,19,0.14); }
+
+    /* About section */
+    .about-section { display:flex; gap:16px; align-items:center; margin-top:12px; }
+    .about-section img { width:88px; height:auto; border-radius:8px; }
+    .highlight-box { background: linear-gradient(90deg, rgba(27,94,32,0.06), rgba(27,94,32,0.02)); padding:12px; border-radius:8px; color:#123b27; font-weight:600; }
+
+    /* Why choose us & values lists */
+    .choose-list, .values-list { margin-top:10px; list-style: none; padding-left: 0; display:grid; gap:8px; }
+    .choose-list li::before, .values-list li::before { content: "•"; color: var(--green-dark); display:inline-block; width:16px; font-weight:800; margin-right:6px; }
+    .choose-list li, .values-list li { padding-left:6px; color:#234b34; font-weight:700; }
+
+    /* Newsletter forms */
+    form { display:flex; gap:10px; align-items:center; margin-top:10px; }
+    input[type="email"] { padding:10px 12px; border:1px solid rgba(27,94,32,0.12); border-radius:8px; flex:1; outline:none; }
+    button[type="submit"], #subscribeBtn { background: var(--accent); color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:800; }
+
+    /* Footer */
+    .site-footer { margin-top:36px; background:#f7faf7; border-top:1px solid rgba(27,94,32,0.04); padding:24px 0; }
+    .footer-container { max-width:1100px; margin:0 auto; padding: 0 18px; display:grid; grid-template-columns: 1fr 280px; gap:20px; align-items:start; }
+    .newsletter-title { font-weight:800; color:var(--green-darker); margin-bottom:8px; }
+    .newsletter-form { display:flex; gap:8px; align-items:center; }
+    .social-icons { display:flex; gap:10px; margin-top:8px; }
+    .locations-list { display:grid; gap:10px; margin-top:8px; }
+
+    .footer-copy { max-width:1100px; margin:14px auto 0; padding:8px 18px; color:#4b6b57; font-weight:600; font-size:14px; }
+
+    /* Responsive */
+    @media (max-width: 880px){
+      .container { grid-template-columns: 1fr; padding-bottom: 20px; }
+      .footer-container { grid-template-columns: 1fr; }
+      .header-navigation { order: 3; width:100%; }
+      .auth-buttons { order: 2; margin-left:auto; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Top green bar -->
-<div class="top-bar">
+  <!-- Top green bar -->
+  <div class="top-bar">
     <div class="top-bar-content">
-        <span class="contact-email">📧 support@startupenablers.in</span>
+      <span class="contact-email">📧 support@startupenablers.in</span>
     </div>
-</div>
+  </div>
 
-<!-- Main header -->
-<header class="header-outer">
+  <!-- Main header -->
+  <header class="header-outer">
     <div class="header-inner responsive-wrapper">
-<!-- Logo -->
-<div class="header-logo">
-    <img src="https://i.postimg.cc/j2FdM5RB/logo-removebg-preview.png" 
-         class="site-logo" 
-         id="logo" />
-</div>
+      <!-- Logo -->
+      <div class="header-logo">
+        <img src="https://i.postimg.cc/j2FdM5RB/logo-removebg-preview.png" class="site-logo" id="logo" alt="Startup Enablers logo" />
+      </div>
 
-<!-- Hidden link to philosophy page -->
-<a href="philosophy.html" id="secretLink" style="display:none;"></a>
+      <!-- Navigation -->
+      <nav class="header-navigation" aria-label="Main navigation">
+          <a href="index.html" class="active">Home</a>
+          <a href="grants.html">Grants</a>
+          <a href="angels.html">Angel Investors</a>
+          <a href="vcs.html">VC Firms</a>
+          <a href="resources.html">Resources</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">About</a>
+      </nav>
 
-        <!-- Navigation -->
-        <nav class="header-navigation">
-            <a href="index.html" class="active">Home</a>
-            <a href="grants.html">Grants</a>
-            <a href="angels.html">Angel Investors</a>
-            <a href="vcs.html">VC Firms</a>
-            <a href="resources.html">Resources</a>
-            <a href="contact.html">Contact</a>
-            <a href="about.html">About</a>
-        </nav>
-
-        <!-- Right buttons -->
-        <div class="auth-buttons">
-            <button id="loginBtn">Login</button>
-            <button id="logoutBtn">Logout</button>
-        </div>
-
+      <!-- Right buttons -->
+      <div class="auth-buttons" aria-hidden="false">
+          <button id="loginBtn">Login</button>
+          <button id="logoutBtn">Logout</button>
+      </div>
     </div>
-</header>
+  </header>
 
-
-<div class="container">
+  <div class="container">
 
     <!-- Left Column: Notifications -->
-    <aside class="side-column">
-        <h2>Notifications</h2>
-        <div class="notification-box">
-            <marquee direction="up" scrollamount="3">
-                <ul>
-                    <li> New government grant added for AI startups</li>
-                    <li> Webinar: Pitching to VCs - Aug 25</li>
-                    <li> Investor report updated for Q3 2025</li>
-                    <li> Tips for writing a winning pitch deck</li>
-                </ul>
-            </marquee>
-        </div>
+    <aside class="side-column" aria-label="Important notifications">
+      <h2>Notifications</h2>
+      <div class="notification-box" role="region" aria-live="polite">
+        <!-- Using marquee to preserve the vertical scroll feel (styled above) -->
+        <marquee behavior="scroll" direction="up" scrollamount="3" onmouseover="this.stop()" onmouseout="this.start()">
+          <ul class="notification-list">
+            <li><span class="notification-icon">🔔</span> New government grant added for AI startups</li>
+            <li><span class="notification-icon">🎤</span> Webinar: Pitching to VCs - Aug 25</li>
+            <li><span class="notification-icon">📊</span> Investor report updated for Q3 2025</li>
+            <li><span class="notification-icon">✍️</span> Tips for writing a winning pitch deck</li>
+            <li><span class="notification-icon">📅</span> Office hours with mentors — Sep 2</li>
+          </ul>
+        </marquee>
+      </div>
     </aside>
 
     <!-- Main Content -->
     <main>
-        <h2>Helping Founders Raise Capital Easily</h2>
-        <p>Startup Enablers is your one-stop platform designed to help early-stage startup founders raise capital with ease and confidence.</p>
-        <p>We connect you with opportunities from equity-free government grants to angel investors and VC firms actively investing in emerging businesses. Our platform also offers curated resources — from pitch deck templates to investor databases — to give your fundraising journey a strong head start.</p>
+      <h2>Helping Founders Raise Capital Easily</h2>
+      <p>Startup Enablers is your one-stop platform designed to help early-stage startup founders raise capital with ease and confidence.</p>
+      <p>We connect you with opportunities from equity-free government grants to angel investors and VC firms actively investing in emerging businesses. Our platform also offers curated resources — from pitch deck templates to investor databases — to give your fundraising journey a strong head start.</p>
 
-        <section>
-            <h3>Explore Opportunities</h3>
-            <div class="card-grid">
-                <div class="card">
-                    <h4>Government Grants</h4>
-                    <p>Find schemes offering equity-free funding.</p>
-                    <a href="grants.html">Learn More</a>
-                </div>
-                <div class="card">
-                    <h4>Angel Investors</h4>
-                    <p>Discover individual investors looking to back ideas like yours.</p>
-                    <a href="angels.html">Learn More</a>
-                </div>
-                <div class="card">
-                    <h4>VC Firms</h4>
-                    <p>Explore venture capital funds investing in your sector.</p>
-                    <a href="vcs.html">Learn More</a>
-                </div>
-                <div class="card">
-                    <h4>Free Resources</h4>
-                    <p>Download investor email templates, pitch decks, and more.</p>
-                    <a href="resources.html">Learn More</a>
-                </div>
+      <section>
+        <h3 style="color:var(--green-darker); margin-top:8px;">Explore Opportunities</h3>
+        <div class="card-grid">
+          <div class="card">
+            <div>
+              <h4>Government Grants</h4>
+              <p>Find schemes offering equity-free funding.</p>
             </div>
-        </section>
+            <a href="grants.html" aria-label="Learn more about Government Grants">Learn More</a>
+          </div>
 
-<!-- About Startup Enablers -->
-<section>
-    <h2>About Startup Enablers</h2>
-    <div class="about-section">
-        <img src="https://i.postimg.cc/j2FdM5RB/logo-removebg-preview.png" alt="Startup Team" />
-        <div>
+          <div class="card">
+            <div>
+              <h4>Angel Investors</h4>
+              <p>Discover individual investors looking to back ideas like yours.</p>
+            </div>
+            <a href="angels.html" aria-label="Learn more about Angel Investors">Learn More</a>
+          </div>
+
+          <div class="card">
+            <div>
+              <h4>VC Firms</h4>
+              <p>Explore venture capital funds investing in your sector.</p>
+            </div>
+            <a href="vcs.html" aria-label="Learn more about VC Firms">Learn More</a>
+          </div>
+
+          <div class="card">
+            <div>
+              <h4>Free Resources</h4>
+              <p>Download investor email templates, pitch decks, and more.</p>
+            </div>
+            <a href="resources.html" aria-label="Learn more about Resources">Learn More</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Startup Enablers -->
+      <section>
+        <h2 style="margin-top:18px;">About Startup Enablers</h2>
+        <div class="about-section">
+          <img src="https://i.postimg.cc/j2FdM5RB/logo-removebg-preview.png" alt="Startup Team" />
+          <div>
             <p class="highlight-box">
-                At <strong>Startup Enablers</strong>, we empower early-stage founders with the right tools, connections, and knowledge 
-                to accelerate growth. Our mission is to make fundraising transparent, accessible, and founder-friendly.
+              At <strong>Startup Enablers</strong>, we empower early-stage founders with the right tools, connections, and knowledge
+              to accelerate growth. Our mission is to make fundraising transparent, accessible, and founder-friendly.
             </p>
+          </div>
         </div>
-    </div>
-</section>
+      </section>
 
-<!-- Why Choose Us -->
-<section>
-    <h2>Why Choose Us?</h2>
-    <ul class="choose-list">
-        <li> Access 500+ verified investors & grant opportunities</li>
-        <li> Ready-to-use pitch decks and templates</li>
-        <li> Networking opportunities with industry leaders</li>
-        <li> Insights & market intelligence reports</li>
-    </ul>
-</section>
+      <!-- Why Choose Us -->
+      <section>
+        <h2 style="margin-top:18px;">Why Choose Us?</h2>
+        <ul class="choose-list">
+          <li> Access 500+ verified investors & grant opportunities</li>
+          <li> Ready-to-use pitch decks and templates</li>
+          <li> Networking opportunities with industry leaders</li>
+          <li> Insights & market intelligence reports</li>
+        </ul>
+      </section>
 
+      <!-- Our Values -->
+      <section>
+        <h2 style="margin-top:18px;">Our Core Values</h2>
+        <ul class="values-list">
+          <li> Innovation – Encouraging bold ideas and unique solutions</li>
+          <li> Impact – Driving meaningful change in industries and communities</li>
+          <li> Collaboration – Building strong founder-investor partnerships</li>
+          <li> Knowledge – Equipping founders with the latest insights</li>
+        </ul>
+      </section>
 
-
-<!-- Our Values -->
-<section>
-    <h2>Our Core Values</h2>
-    <ul class="values-list">
-        <li> Innovation – Encouraging bold ideas and unique solutions</li>
-        <li> Impact – Driving meaningful change in industries and communities</li>
-        <li> Collaboration – Building strong founder-investor partnerships</li>
-        <li> Knowledge – Equipping founders with the latest insights</li>
-    </ul>
-</section>
-
-        <section>
-            <h3>Subscribe to Our Newsletter</h3>
-            <form id="newsletterForm">
-                <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </section>
+      <section>
+        <h3 style="margin-top:18px;">Subscribe to Our Newsletter</h3>
+        <form id="newsletterForm">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </section>
     </main>
-
-</div>
-
-<footer class="site-footer">
-
-  <!-- container -->
-  <div class="footer-container">
-
-    <!-- Newsletter -->
-    <div class="newsletter">
-      <p class="newsletter-title">Stay updated with our Newsletter</p>
-      <div class="newsletter-form">
-        <input id="newsletterEmail" type="email" placeholder="Enter your email id" class="newsletter-input">
-        <button id="subscribeBtn" class="newsletter-btn">SUBSCRIBE</button>
-      </div>
-    </div>
-
-    <!-- Social icons -->
-    <div class="social">
-      <p class="social-title">Follow us</p>
-      <div class="social-icons">
-        <a href="#" aria-label="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn"></a>
-        <a href="#" aria-label="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
-        <a href="#" aria-label="WhatsApp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
-        <a href="#" aria-label="X"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670044.png" alt="X"></a>
-        <a href="#" aria-label="GitHub"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub"></a>
-      </div>
-    </div>
-
-    <!-- Locations -->
-    <div class="locations">
-      <p class="locations-title">Our Locations</p>
-      <div class="locations-list">
-
-        <div class="location-item">
-          <strong>Mumbai HQ</strong>
-          <p>Bandra Kurla Complex,<br>Mumbai 400051</p>
-        </div>
-
-        <div class="location-item">
-          <strong>Bangalore</strong>
-          <p>MG Road,<br>Bengaluru 560001</p>
-        </div>
-
-        <div class="location-item">
-          <strong>Delhi</strong>
-          <p>Jhandewalan Ext.,<br>New Delhi 110055</p>
-        </div>
-
-        <div class="location-item">
-          <strong>GIFT City</strong>
-          <p>DevX, GIFT SEZ,<br>Gandhinagar - 382050</p>
-        </div>
-
-      </div>
-    </div>
 
   </div>
 
-  <!-- copyright -->
-  <div class="footer-copy">© 2025 Startup Enablers. All Rights Reserved.</div>
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div>
+        <div class="newsletter">
+          <p class="newsletter-title">Stay updated with our Newsletter</p>
+          <div class="newsletter-form">
+            <input id="newsletterEmailFooter" type="email" placeholder="Enter your email id" class="newsletter-input">
+            <button id="subscribeBtn" class="newsletter-btn">SUBSCRIBE</button>
+          </div>
+        </div>
 
-  <!-- External JS -->
-  <script src="script.js"></script>
+        <div style="margin-top:18px;">
+          <p class="social-title">Follow us</p>
+          <div class="social-icons">
+            <a href="#" aria-label="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" width="28"></a>
+            <a href="#" aria-label="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="28"></a>
+            <a href="#" aria-label="WhatsApp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" width="28"></a>
+            <a href="#" aria-label="X"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670044.png" alt="X" width="28"></a>
+            <a href="#" aria-label="GitHub"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="28"></a>
+          </div>
+        </div>
+      </div>
 
-</footer>
+      <div class="locations">
+        <p class="locations-title" style="font-weight:800; color:var(--green-darker)">Our Locations</p>
+        <div class="locations-list">
+          <div class="location-item">
+            <strong>Mumbai HQ</strong>
+            <p>Bandra Kurla Complex,<br>Mumbai 400051</p>
+          </div>
 
+          <div class="location-item">
+            <strong>Bangalore</strong>
+            <p>MG Road,<br>Bengaluru 560001</p>
+          </div>
 
-<!-- Hidden link for philosophy page -->
-<a id="secretLink" href="philosophy.html" style="display:none;">Philosophy Page</a>
+          <div class="location-item">
+            <strong>Delhi</strong>
+            <p>Jhandewalan Ext.,<br>New Delhi 110055</p>
+          </div>
+
+          <div class="location-item">
+            <strong>GIFT City</strong>
+            <p>DevX, GIFT SEZ,<br>Gandhinagar - 382050</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-copy">© 2025 Startup Enablers. All Rights Reserved.</div>
+  </footer>
+
+  <!-- Hidden link to philosophy page -->
+  <a id="secretLink" href="philosophy.html" style="display:none;">Philosophy Page</a>
+
+  <!-- Minimal JS for newsletter feedback -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('newsletterForm');
+      const footerInput = document.getElementById('newsletterEmailFooter');
+      const footerBtn = document.getElementById('subscribeBtn');
+
+      form && form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const val = document.getElementById('newsletterEmail').value.trim();
+        if(!val){ alert('Please enter a valid email.'); return; }
+        // here you would normally send the email to your backend
+        alert('Thanks — you are subscribed with ' + val + ' 🎉');
+        form.reset();
+      });
+
+      footerBtn && footerBtn.addEventListener('click', function(){
+        const val = footerInput.value.trim();
+        if(!val){ alert('Please enter a valid email.'); return; }
+        alert('Thanks — you are subscribed with ' + val + ' 🎉');
+        footerInput.value = '';
+      });
+    });
+  </script>
 
 </body>
 </html>
