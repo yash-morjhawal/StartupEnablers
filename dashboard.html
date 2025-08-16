@@ -82,7 +82,75 @@
     <br>
     <button onclick="exportTableToCSV()">Export to CSV</button>
     <button onclick="window.location.href='index.html'">⬅ Back to Home</button>
+
+
+    <!-- 🔥 NEW CONTENT STARTS HERE -->
+    <hr>
+    <section>
+        <h2>Quick Stats</h2>
+        <ul>
+            <li>📊 Projects Saved: <strong>5</strong></li>
+            <li>🤝 Investors Contacted: <strong>3</strong></li>
+            <li>🕒 Mentorship Hours: <strong>12</strong></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Recommended Opportunities</h2>
+        <ul>
+            <li>💡 Startup Growth Bootcamp 2025</li>
+            <li>📈 Emerging Ventures PitchFest</li>
+            <li>🤝 Connect with top angel networks</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Learning Resources</h2>
+        <div>
+            <p><strong>Fundraising Guide:</strong> Step-by-step guide to secure funding.</p>
+            <p><strong>Pitch Deck Template:</strong> Ready-to-use slides for investors.</p>
+            <p><strong>Legal Essentials:</strong> Basics every founder should know.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Upcoming Events</h2>
+        <table border="1" cellpadding="6" cellspacing="0">
+            <tr>
+                <th>Event</th>
+                <th>Date</th>
+                <th>Location</th>
+            </tr>
+            <tr>
+                <td>Startup Expo 2025</td>
+                <td>March 18, 2025</td>
+                <td>Mumbai</td>
+            </tr>
+            <tr>
+                <td>Investor Connect</td>
+                <td>April 7, 2025</td>
+                <td>Bangalore</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Your Notes</h2>
+        <textarea rows="4" cols="50" placeholder="Write your ideas here..."></textarea>
+        <br><br>
+        <button onclick="alert('Note saved (local storage can be added later)')">Save Note</button>
+    </section>
+
+    <section>
+        <h2>Contact Support</h2>
+        <p>If you need help, reach us anytime:</p>
+        <p>📧 <a href="mailto:support@startupenablers.in">support@startupenablers.in</a></p>
+        <p>📞 +91-9876543210</p>
+    </section>
+    <!-- 🔥 NEW CONTENT ENDS HERE -->
+
 </div>
+
 
 <div id="accessDenied" style="display:none; text-align:center; padding:20px;">
     <h2>Access Denied</h2>
@@ -90,9 +158,6 @@
     <button onclick="window.location.href='index.html'">Go to Home</button>
 </div>
 
-<footer>
-    <p>&copy; 2025 Startup Enablers</p>
-</footer>
 
 <script>
     // Check login status
@@ -204,3 +269,4 @@
 
 </footer>
 </html>
+
