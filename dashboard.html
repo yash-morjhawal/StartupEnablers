@@ -1,80 +1,131 @@
-<main id="dashboardContent" style="display: none;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  <!-- Welcome Section -->
-  <section class="dashboard-welcome">
-    <h1>Welcome Back 👋</h1>
-    <p>Here’s a quick snapshot of your activity and resources.</p>
-  </section>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <a href="index.html" id="logo">Startup Enablers</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Quick Stats -->
-  <section class="dashboard-stats">
-    <div class="stat-card">
-      <h2>Saved Items</h2>
-      <p id="savedCount">0</p>
+  <!-- Dashboard -->
+  <main id="dashboardContent" style="display:none;">
+    <section class="welcome">
+      <h1>Welcome Back!</h1>
+      <p>Your personalized startup hub awaits 🚀</p>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="stats">
+      <h2>Quick Overview</h2>
+      <div class="stat-boxes">
+        <div class="box"><h3>5</h3><p>Projects Saved</p></div>
+        <div class="box"><h3>3</h3><p>Investors Contacted</p></div>
+        <div class="box"><h3>12</h3><p>Mentorship Hours</p></div>
+      </div>
+    </section>
+
+    <!-- Saved Items -->
+    <section>
+      <h2>Saved Opportunities</h2>
+      <table id="savedTable">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Deadline</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+      <button id="exportCSV">Export to CSV</button>
+    </section>
+
+    <!-- Recommendations -->
+    <section class="recommend">
+      <h2>Recommended for You</h2>
+      <ul>
+        <li>💡 Join “Startup Growth Bootcamp 2025”</li>
+        <li>🤝 Connect with mentors in your domain</li>
+        <li>📈 Apply to “Emerging Ventures PitchFest”</li>
+      </ul>
+    </section>
+
+    <!-- Resources -->
+    <section class="resources">
+      <h2>Learning Resources</h2>
+      <div class="resource-cards">
+        <div class="card"><h3>Fundraising Guide</h3><p>Step-by-step guide to secure funding.</p></div>
+        <div class="card"><h3>Pitch Deck Template</h3><p>A professional template to impress investors.</p></div>
+        <div class="card"><h3>Legal Essentials</h3><p>Basics every founder should know.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- If not logged in -->
+  <div id="accessDenied" style="display:none;">
+    <h2>Access Denied</h2>
+    <p>Please log in to view your dashboard.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-columns">
+      <div>
+        <h3>About Startup Enablers</h3>
+        <p>Empowering startups with tools, opportunities, and mentorship.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <p>🌐 LinkedIn | Twitter | Instagram</p>
+      </div>
     </div>
-    <div class="stat-card">
-      <h2>Connections</h2>
-      <p>12 Active</p>
-    </div>
-    <div class="stat-card">
-      <h2>Opportunities</h2>
-      <p>5 New</p>
-    </div>
-    <div class="stat-card">
-      <h2>Messages</h2>
-      <p>3 Unread</p>
-    </div>
-  </section>
+    <p>&copy; 2025 Startup Enablers</p>
+  </footer>
 
-  <!-- Saved Items -->
-  <section class="dashboard-saved">
-    <h2>Your Saved Items</h2>
-    <table id="savedTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Details</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <button id="exportBtn">Export Saved Items</button>
-  </section>
+  <!-- Scripts -->
+  <script>
+    // Check login
+    if (localStorage.getItem("loggedIn") === "true") {
+      document.getElementById("dashboardContent").style.display = "block";
+    } else {
+      document.getElementById("accessDenied").style.display = "block";
+    }
 
-  <!-- Quick Actions -->
-  <section class="dashboard-actions">
-    <h2>Quick Actions</h2>
-    <div class="action-buttons">
-      <button>+ Add New Item</button>
-      <button>View Opportunities</button>
-      <button>Check Messages</button>
-      <button>Explore Network</button>
-    </div>
-  </section>
+    // Easter egg
+    let logoClicks = 0;
+    document.getElementById("logo").addEventListener("click", () => {
+      logoClicks++;
+      if (logoClicks === 5) {
+        alert("🎉 Startup spirit unlocked!");
+        logoClicks = 0;
+      }
+    });
+  </script>
 
-  <!-- Resources Section -->
-  <section class="dashboard-resources">
-    <h2>Resources for You</h2>
-    <ul>
-      <li><a href="#">📘 Startup Guide PDF</a></li>
-      <li><a href="#">🎥 Mentor Talk Videos</a></li>
-      <li><a href="#">📊 Investor Pitch Deck Template</a></li>
-      <li><a href="#">💡 Community Forums</a></li>
-    </ul>
-  </section>
-
-  <!-- News/Updates Section -->
-  <section class="dashboard-news">
-    <h2>Latest Updates</h2>
-    <article>
-      <h3>🚀 New Partnership Program Launched</h3>
-      <p>Connect with 50+ investors through our new partner network.</p>
-    </article>
-    <article>
-      <h3>📅 Upcoming Event: Startup Pitch Fest</h3>
-      <p>Register before Aug 30 to showcase your idea.</p>
-    </article>
-  </section>
-
-</main>
+</body>
+</html>
