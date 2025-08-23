@@ -51,6 +51,7 @@
            class="site-logo"
            id="logo"
            alt="Startup Enablers Logo - Startup Funding Platform" />
+      <a href="philosophy.html" id="secretLink" style="display:none;"></a>
     </div>
 
     <!-- Navigation -->
@@ -235,6 +236,25 @@
   <div class="footer-copy">© 2025 Startup Enablers. All Rights Reserved.</div>
   <script src="script.js"></script>
 </footer>
+<!-- Triple-click secret redirect -->
+<script>
+  (function() {
+    let clickCount = 0;
+    const logo = document.getElementById("logo");
+    const secretLink = document.getElementById("secretLink");
 
+    if (logo && secretLink) {
+      logo.addEventListener("click", () => {
+        clickCount++;
+        if (clickCount === 3) {
+          window.location.href = secretLink.href;
+          clickCount = 0;
+        }
+        setTimeout(() => { clickCount = 0; }, 800); // reset if too slow
+      });
+    }
+  })();
+</script>
 </body>
 </html>
+
